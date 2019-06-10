@@ -41,6 +41,7 @@ class Monster:
                 self.attacks[attack_name]["damage roll"] = input("How much damage? (XdX format) \n>> ")
                 self.attacks[attack_name]["damage type"] = input("What kind of damage? \n>> ")
                 self.attacks[attack_name]["description"] = input("Attack description? \n>> ")
+                self.attacks[attack_name]["attack mod"] = int(input("Attack bonus? \n>> +"))
 
         self.tags = []
         user_response = "y"
@@ -87,6 +88,7 @@ class Monster:
                 self.attacks[attack_name]["damage roll"] = input("How much damage? (XdX format) \n>> ")
                 self.attacks[attack_name]["damage type"] = input("What kind of damage? \n>> ")
                 self.attacks[attack_name]["description"] = input("Attack description? \n>> ")
+                self.attacks[attack_name]["attack mod"] = int(input("Attack bonus? \n>> +"))
             elif attack_input == "r":
                 print("Which attack would you like to remove?")
                 for attack in self.attacks:
@@ -129,15 +131,16 @@ class Monster:
         return hit_value > self.ac
 
     def print_info(self):
-        print("name: " + self.name +
+        print("\nname: " + self.name +
               "\nhealth: " + str(self.health) + "/" + str(self.max_health) +
               "\narmor class: " + str(self.ac) +
               "\nspeed: " + str(self.speed))
         print("attacks: ")
         for attack in self.attacks:
             print("- " + attack)
-            print("  - " + self.attacks[attack]["damage roll"])
-            print("  - " + self.attacks[attack]["damage type"])
+            print("  - " + self.attacks[attack]["damage roll"]
+                  + " " + self.attacks[attack]["damage type"])
+            print("  - +" + str(self.attacks[attack]["attack mod"]) + " atk bonus")
             print("  - " + self.attacks[attack]["description"])
         print("tags: ")
         for tag in self.tags:
@@ -189,6 +192,11 @@ class Monster:
         attack_choice = input(">> ")
         for attack in self.attacks:
             if attack == attack_choice:
+                if input("Does " + str(roll("1d20") + self.attacks[attack]["attack mod"]) +
+                         " break the PC's armor class? (y/n) \n>> ") \
+                        != "y":
+                    print(self.name.upper() + "'s " + attack.upper() + " attack has failed!")
+                    return
                 print("\n" + attack.upper() + ":")
                 print(str(roll(self.attacks[attack]["damage roll"])) + " " + self.attacks[attack]["damage type"])
                 print(self.attacks[attack]["description"])
