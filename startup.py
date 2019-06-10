@@ -17,25 +17,31 @@ def scene_select():
         print("You don't have any scenes right now! Let's make a new one:")
         scene_create()
     else:
-        print("Please select a scene:")
+        print("Please select a scene: (Type o for options.)")
         for scene_name in scenes:
             print("- " + scene_name)
         user_choice = input(">> ").lower()
-        if user_choice in ["quit", "q", "exit", "x", "close"]:
+        if user_choice == "q":
             print("Goodbye! \n\n")
-        elif user_choice in ["new", "new scene", "n"]:
+            # Lets this fxn run to completion
+        elif user_choice == "n":
             print("Okay, let's make a new scene then.")
             scene_create()
-        elif user_choice in ["d", "del", "delete", "rm", "remove"]:
+        elif user_choice == "d":
             scene_delete()
+        elif user_choice == "o":
+            print("Options:" +
+                  "\n- n: create a new scene"
+                  "\n- d: delete an existing scene"
+                  "\n- o: options (you've figured this one out)"
+                  "\n- q: quit program")
         elif user_choice not in scenes:
-            print("Invalid scene name; try again. (Type d to delete a "
-                  "scene, n to create a new one, or q to quit.)")
+            print("Invalid scene name; try again. Type o for options.")
             scene_select()
         else:
             print("Alright; let's begin!")
             monster_manager.dndmm_main(user_choice, scenes[user_choice])  # ACTIVATES MAIN
-            print("\nWelcome back to scene selection. Type q to quit.")
+            print("\nWelcome back to scene selection.")
             scene_select()
 
 
@@ -43,11 +49,15 @@ def scene_select():
 def scene_create():
     new_scene_name = input("What shall the name of this here scene be?\n"
                            ">> ").lower()
-    scenes = pickle.load(open(storage_filename, "rb"))
-    scenes[new_scene_name] = []
-    pickle.dump(scenes, open(storage_filename, "wb"))
-    print(new_scene_name + ". It has a woody sound. I like it.")
-    scene_select()
+    if new_scene_name in ["n", "d", "o", "q", "nvm"]:
+        print("Stop trying to break my program!\n")
+        scene_create()
+    else:
+        scenes = pickle.load(open(storage_filename, "rb"))
+        scenes[new_scene_name] = []
+        pickle.dump(scenes, open(storage_filename, "wb"))
+        print(new_scene_name + ". It has a woody sound. I like it.")
+        scene_select()
 
 
 # SCENE DELETION
@@ -57,7 +67,7 @@ def scene_delete():
     for scene in scenes:
         print("- " + scene)
     user_choice = input(">> ").lower()
-    if user_choice in ["n", "none", "nvm", "nevermind"]:
+    if user_choice == "nvm":
         print("Aight thas cool")
         scene_select()
     elif user_choice in scenes:
