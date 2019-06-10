@@ -21,7 +21,7 @@ def dndmm_main(scene_name, monsters):
         print("There are currently no monsters in this scene.")
 
     # Accept user input
-    user_input = input(">> ").lower()
+    user_input = input("\n>> ").lower()
     if len(monsters) < 1 and\
        user_input in ["e", "c", "k", "d", "a", "i"]:
         print("Sorry - you can't do that without any monsters in the scene.")
@@ -69,7 +69,7 @@ def dndmm_main(scene_name, monsters):
         choose_monster(monsters).print_info()
 
     elif user_input == "r":
-        print(roll(input("How much? \n>> ")))
+        print(roll(input("How much? (Enter nothing to roll 1d20.) \n>> ")))
 
     elif user_input != "q":
         print("Invalid command. Type \"o\" for options.")

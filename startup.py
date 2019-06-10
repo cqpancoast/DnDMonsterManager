@@ -20,7 +20,7 @@ def scene_select():
         print("Please select a scene: (Type o for options.)")
         for scene_name in scenes:
             print("- " + scene_name)
-        user_choice = input(">> ").lower()
+        user_choice = input("\n>> ").lower()
         if user_choice == "q":
             print("Goodbye! \n\n")
             # Lets this fxn run to completion
@@ -37,11 +37,12 @@ def scene_select():
                   "\n- q: quit program")
         elif user_choice not in scenes:
             print("Invalid scene name; try again. Type o for options.")
-            scene_select()
         else:
             print("Alright; let's begin!")
             monster_manager.dndmm_main(user_choice, scenes[user_choice])  # ACTIVATES MAIN
             print("\nWelcome back to scene selection.")
+
+        if user_choice != "q":
             scene_select()
 
 
@@ -57,7 +58,6 @@ def scene_create():
         scenes[new_scene_name] = []
         pickle.dump(scenes, open(storage_filename, "wb"))
         print(new_scene_name + ". It has a woody sound. I like it.")
-        scene_select()
 
 
 # SCENE DELETION
@@ -67,14 +67,12 @@ def scene_delete():
     for scene in scenes:
         print("- " + scene)
     user_choice = input(">> ").lower()
-    if user_choice == "nvm":
+    if user_choice == "nevermind":
         print("Aight thas cool")
-        scene_select()
     elif user_choice in scenes:
         del scenes[user_choice]
         pickle.dump(scenes, open(storage_filename, "wb"))
         print("Done and done.")
-        scene_select()
     else:
         print("Sorry, that's not a valid response. Please choose a scene, "
               "or type \"nevermind\".")
