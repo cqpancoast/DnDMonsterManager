@@ -16,6 +16,7 @@ def scene_select():
     if len(scenes) == 0:
         print("You don't have any scenes right now! Let's make a new one:")
         scene_create()
+        scene_select()
     else:
         print("Please select a scene: (Type o for options.)")
         for scene_name in scenes:
