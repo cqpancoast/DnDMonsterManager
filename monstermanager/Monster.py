@@ -27,7 +27,7 @@ class Monster:
             self.max_health = int(mh_input)
         self.health = self.max_health
         self.ac = int(input("armor class: "))
-        self.speed = int(input("base speed: "))
+        self.speed = input("base speed: ")
 
         self.attacks = {}
         user_response = "y"
@@ -72,9 +72,9 @@ class Monster:
         ac_input = input("armor class: " + str(self.ac) + " -> ")
         if ac_input.replace(" ", "") != "":
             self.ac = int(ac_input)
-        speed_input = input("speed: " + str(self.speed) + " -> ")
+        speed_input = input("speed: " + self.speed + " -> ")
         if speed_input.replace(" ", "") != "":
-            self.speed = int(speed_input)
+            self.speed = speed_input
 
         attack_choice = "y"
         while attack_choice == "y":
