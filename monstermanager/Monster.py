@@ -19,7 +19,7 @@ class Monster:
     def __init__(self):
 
         self.name = input("name: ")
-        mh_input = input("max health (# or XdX): ")
+        mh_input = input("max health (# or XdX+X): ")
         if "d" in mh_input:
             self.max_health = roll(mh_input)
             print("  rolled max health: " + str(self.max_health))
@@ -38,7 +38,7 @@ class Monster:
             else:
                 attack_name = input("What should this attack be named? \n>> ")
                 self.attacks[attack_name] = {}
-                self.attacks[attack_name]["damage roll"] = input("How much damage? (XdX format) \n>> ")
+                self.attacks[attack_name]["damage roll"] = input("How much damage? (XdX+X format) \n>> ")
                 self.attacks[attack_name]["damage type"] = input("What kind of damage? \n>> ")
                 self.attacks[attack_name]["description"] = input("Attack description? \n>> ")
                 self.attacks[attack_name]["attack mod"] = int(input("Attack bonus? \n>> +"))
@@ -85,7 +85,7 @@ class Monster:
             if attack_input == "a":
                 attack_name = input("What should this attack be named? \n>> ")
                 self.attacks[attack_name] = {}
-                self.attacks[attack_name]["damage roll"] = input("How much damage? (XdX format) \n>> ")
+                self.attacks[attack_name]["damage roll"] = input("How much damage? (XdX+X format) \n>> ")
                 self.attacks[attack_name]["damage type"] = input("What kind of damage? \n>> ")
                 self.attacks[attack_name]["description"] = input("Attack description? \n>> ")
                 self.attacks[attack_name]["attack mod"] = int(input("Attack bonus? \n>> +"))
@@ -141,7 +141,7 @@ class Monster:
             print("  - " + self.attacks[attack]["damage roll"]
                   + " " + self.attacks[attack]["damage type"])
             print("  - +" + str(self.attacks[attack]["attack mod"]) + " atk bonus")
-            print("  - " + self.attacks[attack]["description"])
+            print("  " + self.attacks[attack]["description"])
         print("tags: ")
         for tag in self.tags:
             print("- " + tag)
