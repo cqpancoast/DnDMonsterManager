@@ -92,7 +92,7 @@ class Monster:
             elif attack_input == "r":
                 print("Which attack would you like to remove?")
                 for attack in self.attacks:
-                    print(attack)
+                    print("- " + attack)
                 attack_to_rm = input(">> ")
                 if attack_to_rm in self.attacks:
                     self.attacks.pop(attack_to_rm)
