@@ -85,7 +85,7 @@ def dndmm_main(scene_name, monsters):
 # CHOOSE A MONSTER
 def choose_monster(monsters):
     print_monsters(monsters)
-    monster_choice = input(">> ").lower()
+    monster_choice = input(">> ")
     for monster in monsters:
         if monster.is_named(monster_choice):
             return monster
