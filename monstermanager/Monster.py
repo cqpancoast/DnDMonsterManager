@@ -163,7 +163,7 @@ class Monster:
             damage_done = 0
             print(self.name + " is immune to " + damage_type + " damage.")
         elif self.has_tag(damage_type + " resistant"):
-            damage_done = (base_damage / 2).__floordiv__()
+            damage_done = base_damage // 2
             print(self.name + " is resistant to " + damage_type + " damage.")
         elif self.has_tag(damage_type + " weak"):
             damage_done = base_damage * 2
@@ -173,7 +173,7 @@ class Monster:
 
         self.health -= damage_done
         print(self.name + " just took " + str(damage_done) + " damage...")
-        if self.health < 0:
+        if self.health < 1:
             print("...and is totally fuckin' dead.")
             self.set_tag("dead")
         else:
