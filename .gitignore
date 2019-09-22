@@ -2,3 +2,4 @@ bin_scenes
 # This file is a save file specific to each instance and should not be uploaded
 *.idea
 __pycache__
+.DS_Store
